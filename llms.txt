@@ -1,0 +1,33 @@
+# ProtoLens
+
+ProtoLens is a prototype review product by MyAgentHubs.
+
+URL: https://protolens.myagenthubs.com
+MCP endpoint: https://protolens.myagenthubs.com/mcp
+GitHub App: https://github.com/apps/myagenthubs-protolens
+
+## Summary
+
+ProtoLens turns static HTML, SVG, and PNG prototype files in GitHub repositories into stable review links. Reviewers can comment directly on the prototype. Owners can export comments as Markdown or let AI agents retrieve review data through MCP.
+
+## Audience
+
+ProtoLens is for AI-assisted product builders, one-person companies, small teams, and internal product teams that generate many HTML prototypes and need fast, structured review without setting up a staging system.
+
+## Key Concepts
+
+- GitHub App based repository access
+- Static prototype review
+- Stable review URLs
+- Anchored comments
+- Markdown export
+- MCP-ready review feedback for AI agents
+- Privacy-conscious public documentation with private implementation
+
+## Public Docs
+
+- README: README.md
+- Quickstart: docs/quickstart.md
+- Security: docs/security.md
+- Privacy: docs/privacy.md
+- MCP: docs/mcp.md
