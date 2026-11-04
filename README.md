@@ -1,55 +1,36 @@
 # ProtoLens
 
-Review AI-generated HTML prototypes from GitHub.
+**Work with AI. Turn ideas into the outcomes you really want.**
 
-ProtoLens turns static HTML, SVG, and PNG prototype files into stable review links. Teammates can open a link, click the prototype, leave anchored comments, export the feedback as Markdown, or let AI agents retrieve the review data through MCP.
+ProtoLens is a platform for people and AI to align on goals and review plans. By reviewing concrete plans and interactive prototypes, people clarify requirements, goals, and trade-offs. Their AI publishes work through MCP, reads feedback, and iterates on versions, helping carry agreed plans through implementation and human verification.
 
-[Open ProtoLens](https://protolens.myagenthubs.com) · [MCP endpoint](https://protolens.myagenthubs.com/mcp) · [Quickstart](docs/quickstart.md) · [Security](docs/security.md)
-
-![ProtoLens dashboard workspace](assets/dashboard-workspace.png)
+[Product overview](https://www.myagenthubs.com/protolens/) · [中文介绍](https://www.myagenthubs.com/zh-CN/protolens/) · [Open ProtoLens](https://protolens.myagenthubs.com) · [MCP endpoint](https://protolens.myagenthubs.com/mcp)
 
 ## Why ProtoLens
 
-AI teams produce a lot of HTML prototypes, but review usually falls apart at the last mile: people push temporary repos, send zipped files, publish unsafe public pages, or paste feedback back into chat.
+You do not need a complete brief to begin. Let your AI turn an initial idea into a plan you can discuss and a prototype you can try, then publish them to ProtoLens. Give feedback and make choices in context; your AI adjusts the work. Each round helps clarify your goals and approach. Your AI then carries the agreed plan into implementation, and you verify the result.
 
-ProtoLens keeps the loop simple:
-
-- Connect a GitHub repository through the ProtoLens GitHub App.
-- Discover static prototype files such as `index.html`, `.svg`, and `.png`.
-- Share a stable review link for each prototype.
-- Collect comments anchored to the selected area or text.
-- Export comments as Markdown or fetch them from an AI tool through MCP.
-
-![ProtoLens anchored prototype comments](assets/review-comments.png)
+ProtoLens holds the plans, prototypes, feedback, and version reviews. The AI you connect creates, revises, and implements the work.
 
 ## How It Works
 
-1. Install the ProtoLens GitHub App on selected repositories.
-2. Open the ProtoLens dashboard and choose a repository.
-3. ProtoLens discovers reviewable static prototype files.
-4. Copy or open the stable review URL.
-5. Reviewers comment directly on the prototype.
-6. Owners export Markdown feedback or use the MCP server from AI tools.
+1. **Share an idea.** Connect your AI client to ProtoLens and authorize access. Ask it to turn your idea into a plan and prototype and publish them to ProtoLens.
+2. **Make the idea concrete.** Your AI publishes V1 and returns a private review link. Plans and interactive prototypes are presented as self-contained HTML.
+3. **Review and choose.** Open the link, try the prototype, comment on specific content, answer decision questions, and submit feedback. Reviewers use a nickname and do not need an account.
+4. **Refine and review again.** Ask your AI to read the submitted feedback, publish the next version, and explain how it handled each item. Verify the changes and repeat as your goals and trade-offs become clearer.
+5. **Implement and verify.** Once you agree on the direction and plan, ask your AI to implement it in your development environment. You verify that the result meets your goals.
 
-ProtoLens is built for AI prototype collaboration: one-person companies, small product teams, internal tool teams, and agent workflows that need fast human review without setting up a full staging system.
+**An AI response is not human acceptance.** Reviewers verify whether the changes address their original feedback. Publishing a revision does not by itself mean the work is accepted.
 
-## Security And Privacy
+The main publishing flow uses MCP and does not require a GitHub repository, GitHub App installation, or repository token.
 
-This public repository contains product-facing docs and screenshots only. The production implementation is not published here.
+## Who It Is For
 
-ProtoLens is designed around GitHub-backed ownership:
+ProtoLens is for people building with AI: individuals, small product teams, internal tool teams, and reviewers who need to clarify an idea before committing to an implementation. Use it when an initial request still leaves questions about the goal, the preferred approach, or what an acceptable result looks like.
 
-- Repository access is controlled by the user's GitHub App installation.
-- Prototype files are fetched by repo, ref, and path instead of cloning and running arbitrary code.
-- Review comments are stored as Markdown-oriented review data associated with the selected GitHub-backed prototype.
-- HTML review rendering is sandboxed for static prototype review. JavaScript execution and form submission are intentionally constrained.
-- Large files may be refused by current safety and resource limits.
+## Connect Your AI
 
-See [Security](docs/security.md) for more detail.
-
-## MCP For AI Agents
-
-ProtoLens exposes an MCP server so AI tools can list prototype files, create review links, read comments, and export Markdown feedback.
+Use the remote MCP endpoint in a compatible client and complete the authorization flow:
 
 ```json
 {
@@ -61,23 +42,31 @@ ProtoLens exposes an MCP server so AI tools can list prototype files, create rev
 }
 ```
 
-Some clients also support short-lived bearer-token configuration generated from the ProtoLens dashboard. See [MCP](docs/mcp.md).
+Your connected AI can publish works, read submitted feedback, and publish revised versions. Reviewers only need the review link; they do not configure MCP.
+
+Client support depends on the application, plan, and workspace settings. Connecting MCP is not a promise that every client can automatically resume a conversation when a review is submitted. The basic workflow is to ask your connected AI to read the feedback and continue. Implementation and deployment remain actions for your AI in the environment you authorize.
+
+## Access, Security, And Privacy
+
+ProtoLens is currently available through invitation-only early access. See the [product page](https://www.myagenthubs.com/protolens/) for availability and plan details.
+
+- A private review link can be opened, used for comments, or forwarded by anyone who holds it. Owners can revoke a link to stop future access; already viewed or downloaded copies cannot be recalled.
+- Review drafts are private until submission. People using the same link can see submitted feedback.
+- AI connections and review links have separate access controls and can be revoked separately.
+- Prototypes run in an isolated review sandbox. Use mock data; the review environment does not host your production application backend.
+
+Read the current [Privacy Policy](https://protolens.myagenthubs.com/privacy), [Terms](https://protolens.myagenthubs.com/terms), and [Security Overview](https://protolens.myagenthubs.com/security).
 
 ## Public Repo Scope
 
-This repository is the public product home for ProtoLens. It intentionally does not contain:
+This repository contains public product documentation and historical screenshots. It does not contain the production implementation, deployment configuration, secrets, or private user and review data.
 
-- Worker source code
-- Deployment configuration
-- Secrets or environment setup
-- Internal launch plans
-- Private user or review data
-
-Use this repo to understand the product, share examples, and link to public documentation.
+The older guides under `docs/` describe the earlier GitHub-backed prototype-review workflow. They are historical reference material; use the workflow above and the product page for the current MCP publishing experience.
 
 ## Links
 
-- Product: https://protolens.myagenthubs.com
+- Product overview: https://www.myagenthubs.com/protolens/
+- Application: https://protolens.myagenthubs.com
 - MCP: https://protolens.myagenthubs.com/mcp
-- GitHub App: https://github.com/apps/myagenthubs-protolens
+- AI-readable product summary: [llms.txt](llms.txt)
 - Contact: support@myagenthubs.com
